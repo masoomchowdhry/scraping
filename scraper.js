@@ -1,7 +1,7 @@
 const chromium = require("chrome-aws-lambda");
 const puppeteer = require("puppeteer-core");
 
-async function scrapeGoogleShopping(query, location = "Aligarh, Uttar Pradesh, India") {
+async function scrapeGoogleShopping(query) {
   let browser = null;
 
   try {
@@ -13,6 +13,8 @@ async function scrapeGoogleShopping(query, location = "Aligarh, Uttar Pradesh, I
     });
 
     const page = await browser.newPage();
+    
+    // Google Shopping search with location-specific parameter
     await page.goto(`https://www.google.com/search?q=${query}&tbm=shop&uule=w+CAIQICIbQWxpZ2FyaCwgVXR0YXIgUHJhZGVzaCwgSW5kaWE`, {
       waitUntil: "domcontentloaded",
     });
